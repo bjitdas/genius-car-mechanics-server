@@ -1,4 +1,6 @@
-const { MongoClient } = require('mongodb');
+// const { MongoClient } = require('mongodb');
+var MongoClient = require('mongodb').MongoClient;
+
 const express = require('express');
 const cors = require('cors');
 const ObjectId = require('mongodb').ObjectId;
@@ -16,7 +18,9 @@ app.use(express.json());
 
 // -------------mongodb---setup------------
 
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.odmwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+var uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0-shard-00-00.odmwm.mongodb.net:27017,cluster0-shard-00-01.odmwm.mongodb.net:27017,cluster0-shard-00-02.odmwm.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-qbq0bj-shard-0&authSource=admin&retryWrites=true&w=majority`;
+
+// const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.odmwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
